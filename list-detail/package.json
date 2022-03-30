@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "serverless-offline": "^8.5.0"
+  },
+  "dependencies": {
+    "axios": "^0.26.1"
+  }
+}
