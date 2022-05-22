@@ -1,8 +1,6 @@
 # package directories
 node_modules
 jspm_packages
-.dynamodb
-.vscode
 
 # Serverless directories
 .serverless

@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "serverless-offline": "^8.8.0"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "eslint": "^8.16.0"
+  }
+}

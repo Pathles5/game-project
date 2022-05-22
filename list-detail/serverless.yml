@@ -4,6 +4,13 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: nodejs14.x
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+          - dynamodb.*
+          Resource: '*'
 
 functions:
   hello:
@@ -12,6 +19,24 @@ functions:
       - httpApi:
           path: /
           method: get
+          
+resources: # CloudFormation template syntax from here on.
+  Resources:
+    categories:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: categories
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: name
+            AttributeType: S
+          - AttributeName: description
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
 
 plugins:
   - serverless-offline
+  - serverless-dynamodb-local

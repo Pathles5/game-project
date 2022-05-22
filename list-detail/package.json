@@ -3,6 +3,7 @@
     "serverless-offline": "^8.5.0"
   },
   "dependencies": {
-    "axios": "^0.26.1"
+    "axios": "^0.26.1",
+    "serverless-dynamodb-local": "^0.2.40"
   }
 }
