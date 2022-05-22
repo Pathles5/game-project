@@ -6,11 +6,19 @@ provider:
   runtime: nodejs14.x
 
 functions:
-  hello:
-    handler: handler.hello
+  test:
+    handler: handler.test
     events:
       - httpApi:
-          path: /
+          path: /test
+          method: post
+
+  games:
+    handler: handler.getGames
+    events:
+      - httpApi:
+          path: /games/{param}
           method: get
+
 plugins:
   - serverless-offline

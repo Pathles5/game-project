@@ -52,11 +52,10 @@ async function listPagination(startItem, amountPag, query) {
  *
  * @param {string[]} id
  */
-async function findListGameById(id, amountPag) {
+async function findGameById(id) {
   let query = {
-    fields: ['id', 'name', 'age_ratings'],
-    where: { id: id },
-    limit: amountPag ?? 500,
+    fields: ['*'],
+    where: { id: id }
   };
   query = tools.parseFormatToIGDBQuery(query);
   console.log('Query');
@@ -89,6 +88,6 @@ async function post(query) {
 }
 
 module.exports = {
-  findListGameById,
+  findGameById,
   listPagination,
 };

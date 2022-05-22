@@ -16,7 +16,8 @@
  * }
  */
 function parseFormatToIGDBQuery(inputs) {
-  let fields = inputs.fields ? `${inputs.fields} ${inputs.fields.join(',')}; ` : null;
+  let fields = inputs.fields ? `${inputs.fields.join(',')}; ` : '*; ';
+  fields = `fields ${fields}`;
   let where = null;
   if (inputs.where) {
     const keys = Object.keys(inputs.where);
