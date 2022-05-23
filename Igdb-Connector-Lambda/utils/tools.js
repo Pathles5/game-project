@@ -4,7 +4,7 @@
  * @param {string} url
  * @param {string} method
  */
-/***
+/** *
  * input = {
  *  fields : string[],
  *  where : {key1:value1,key2:value2},
@@ -25,16 +25,29 @@ function parseFormatToIGDBQuery(inputs) {
     where = where.join(',');
     where = `where ${where}; `;
   }
-  let exclude = inputs.exclude ? `exclude ${inputs.exclude.join(',')}; ` : '';
-  let limit = `limit ${inputs.limit ?? '500'}; `;
-  let sort = inputs.sort
+  const exclude = inputs.exclude ? `exclude ${inputs.exclude.join(',')}; ` : '';
+  const limit = `limit ${inputs.limit ?? '500'}; `;
+  const sort = inputs.sort
     ? `sort ${inputs.sort.join(',')} ${inputs.desc ? 'desc' : 'asc'};`
     : '';
-  let search = inputs.search ? `search "${inputs.search}";` : '';
-  let result = fields + where + exclude + limit + sort + search;
+  const search = inputs.search ? `search "${inputs.search}";` : '';
+  const result = fields + where + exclude + limit + sort + search;
   return result;
 }
 
+const validBody = (body) => {
+  const arrayKeys = ['fields', 'where', 'exclude', 'limit', 'sort', 'search'];
+  const response = { data: '' };
+  Object.keys(body).forEach((key) => {
+    if (!arrayKeys.includes(key)) {
+      response.data += `The filter for the field: ${key} is not aviable\n\r`;
+      response.error = true;
+    }
+  });
+  return response;
+};
+
 module.exports = {
   parseFormatToIGDBQuery,
+  validBody,
 };
